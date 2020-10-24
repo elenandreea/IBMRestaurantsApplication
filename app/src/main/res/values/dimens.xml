@@ -3,4 +3,8 @@
     <dimen name="icon_size">100dp</dimen>
     <dimen name="padding_16">16dp</dimen>
     <dimen name="padding_64">64dp</dimen>
+    <dimen name="progressbar_size">50dp</dimen>
+    <dimen name="thin">1dp</dimen>
+    <dimen name="padding_05">5dp</dimen>
+    <dimen name="image_detail">80dp</dimen>
 </resources>
