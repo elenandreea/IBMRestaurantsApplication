@@ -1,19 +1,26 @@
 package com.ibm.restaurants.models;
 
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 
 public class Item {
+    @SerializedName("imagePath")
     private String icon;
-    private String title;
-    private String subTitle;
-    private ArrayList<String> imageURLs;
 
-    public Item(String icon, String title, String subTitle, ArrayList<String> imageURLs) {
+    @SerializedName("name")
+    private String title;
+
+    @SerializedName("description")
+    private String subTitle;
+//    private ArrayList<String> imageURLs;
+
+    public Item(String icon, String title, String subTitle){ //, ArrayList<String> imageURLs) {
         this.icon = icon;
         this.title = title;
         this.subTitle = subTitle;
-        this.imageURLs = imageURLs;
+        //this.imageURLs = imageURLs;
     }
 
     public String getIcon() {
@@ -40,11 +47,11 @@ public class Item {
         this.subTitle = subTitle;
     }
 
-    public ArrayList<String> getImageURLs() {
-        return imageURLs;
-    }
-
-    public void setImageURLs(ArrayList<String> imageURLs) {
-        this.imageURLs = imageURLs;
-    }
+//    public ArrayList<String> getImageURLs() {
+//        return imageURLs;
+//    }
+//
+//    public void setImageURLs(ArrayList<String> imageURLs) {
+//        this.imageURLs = imageURLs;
+//    }
 }

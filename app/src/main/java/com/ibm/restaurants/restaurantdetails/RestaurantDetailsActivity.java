@@ -28,7 +28,7 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recycle_detail);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
-        ItemDetailsAdapter itemDetailsAdapter = new ItemDetailsAdapter(item.getImageURLs(), this);
-        recyclerView.setAdapter(itemDetailsAdapter);
+//        ItemDetailsAdapter itemDetailsAdapter = new ItemDetailsAdapter(item.getImageURLs(), this);
+//        recyclerView.setAdapter(itemDetailsAdapter);
     }
 }

@@ -4,6 +4,11 @@ android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     defaultConfig {
         applicationId "com.ibm.restaurants"
         minSdkVersion 21
@@ -33,6 +38,10 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     // Skip this if you don't want to use integration libraries or configure Glide.
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

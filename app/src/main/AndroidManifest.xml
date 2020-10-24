@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".restaurantdetails.RestaurantDetailsActivity"></activity>
+        <activity android:name=".restaurantdetails.RestaurantDetailsActivity"/>
         <activity android:name=".restaurants.RestaurantsActivity" />
         <activity android:name=".SplashActivity">
             <intent-filter>
