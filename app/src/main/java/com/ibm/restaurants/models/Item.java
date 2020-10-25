@@ -37,15 +37,6 @@ public class Item implements Parcelable {
         this.imageURLs = imageURLs;
     }
 
-    public Item(Parcel in) {
-        icon = in.readString();
-        title = in.readString();
-        subTitle = in.readString();
-        latitude = in.readDouble();
-        longitude = in.readDouble();
-        imageURLs = in.createTypedArrayList(ItemDetail.CREATOR);
-    }
-
     public String getIcon() {
         return icon;
     }
@@ -94,16 +85,6 @@ public class Item implements Parcelable {
         return imageURLs;
     }
 
-    public static final Parcelable.Creator<Item> CREATOR = new Parcelable.Creator<Item>() {
-        public Item createFromParcel(Parcel in) {
-            return new Item(in);
-        }
-
-        public Item[] newArray(int size) {
-            return new Item[size];
-        }
-    };
-
     @Override
     public int describeContents() {
         return 0;
@@ -111,11 +92,32 @@ public class Item implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(icon);
-        dest.writeString(title);
-        dest.writeString(subTitle);
-        dest.writeTypedList(imageURLs);
-        dest.writeDouble(latitude);
-        dest.writeDouble(longitude);
+        dest.writeString(this.icon);
+        dest.writeString(this.title);
+        dest.writeString(this.subTitle);
+        dest.writeDouble(this.latitude);
+        dest.writeDouble(this.longitude);
+        dest.writeTypedList(this.imageURLs);
     }
+
+    protected Item(Parcel in) {
+        this.icon = in.readString();
+        this.title = in.readString();
+        this.subTitle = in.readString();
+        this.latitude = in.readDouble();
+        this.longitude = in.readDouble();
+        this.imageURLs = in.createTypedArrayList(ItemDetail.CREATOR);
+    }
+
+    public static final Creator<Item> CREATOR = new Creator<Item>() {
+        @Override
+        public Item createFromParcel(Parcel source) {
+            return new Item(source);
+        }
+
+        @Override
+        public Item[] newArray(int size) {
+            return new Item[size];
+        }
+    };
 }

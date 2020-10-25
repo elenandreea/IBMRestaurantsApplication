@@ -15,8 +15,8 @@ import com.ibm.restaurants.R;
 import java.util.ArrayList;
 
 public class ItemDetailsAdapter extends RecyclerView.Adapter<ItemDetailsAdapter.ItemDetailsViewHolder> {
-    ArrayList<String> imageURLs;
-    Context context;
+    private ArrayList<String> imageURLs;
+    private Context context;
 
     public ItemDetailsAdapter(ArrayList<String> imageURLs, Context context) {
         this.imageURLs = imageURLs;
@@ -47,7 +47,7 @@ public class ItemDetailsAdapter extends RecyclerView.Adapter<ItemDetailsAdapter.
     static class ItemDetailsViewHolder extends RecyclerView.ViewHolder{
         private AppCompatImageView imageView;
 
-        public ItemDetailsViewHolder(@NonNull View itemView) {
+        ItemDetailsViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.view_single_pic);
 

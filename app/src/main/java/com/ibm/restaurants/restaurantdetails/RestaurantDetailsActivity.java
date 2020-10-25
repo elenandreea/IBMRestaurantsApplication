@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import com.ibm.restaurants.R;
 import com.ibm.restaurants.adapters.ItemDetailsAdapter;
@@ -30,7 +29,6 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
         AppCompatTextView restaurantTitle = findViewById(R.id.title_detail);
         AppCompatTextView restaurantDetails = findViewById(R.id.description_detail);
 
-        String title = item.getTitle();
         restaurantDetails.setText(item.getSubTitle());
         restaurantTitle.setText(item.getTitle());
 
