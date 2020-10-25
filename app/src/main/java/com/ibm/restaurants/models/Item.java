@@ -1,11 +1,14 @@
 package com.ibm.restaurants.models;
 
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class Item {
+public class Item implements Parcelable {
     @SerializedName("imagePath")
     private String icon;
 
@@ -14,13 +17,33 @@ public class Item {
 
     @SerializedName("description")
     private String subTitle;
-//    private ArrayList<String> imageURLs;
 
-    public Item(String icon, String title, String subTitle){ //, ArrayList<String> imageURLs) {
+    @SerializedName("latitude")
+    private double latitude;
+
+    @SerializedName("longitude")
+    private double longitude;
+
+    @SerializedName("photos")
+    private List<ItemDetail> imageURLs;
+
+
+    public Item(String icon, String title, String subTitle, double latitude, double longitude, List<ItemDetail> imageURLs) {
         this.icon = icon;
         this.title = title;
         this.subTitle = subTitle;
-        //this.imageURLs = imageURLs;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.imageURLs = imageURLs;
+    }
+
+    public Item(Parcel in) {
+        icon = in.readString();
+        title = in.readString();
+        subTitle = in.readString();
+        latitude = in.readDouble();
+        longitude = in.readDouble();
+        imageURLs = in.createTypedArrayList(ItemDetail.CREATOR);
     }
 
     public String getIcon() {
@@ -47,11 +70,52 @@ public class Item {
         this.subTitle = subTitle;
     }
 
-//    public ArrayList<String> getImageURLs() {
-//        return imageURLs;
-//    }
-//
-//    public void setImageURLs(ArrayList<String> imageURLs) {
-//        this.imageURLs = imageURLs;
-//    }
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public void setImageURLs(List<ItemDetail> imageURLs) {
+        this.imageURLs = imageURLs;
+    }
+
+    public List<ItemDetail> getImageURLs() {
+        return imageURLs;
+    }
+
+    public static final Parcelable.Creator<Item> CREATOR = new Parcelable.Creator<Item>() {
+        public Item createFromParcel(Parcel in) {
+            return new Item(in);
+        }
+
+        public Item[] newArray(int size) {
+            return new Item[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(icon);
+        dest.writeString(title);
+        dest.writeString(subTitle);
+        dest.writeTypedList(imageURLs);
+        dest.writeDouble(latitude);
+        dest.writeDouble(longitude);
+    }
 }

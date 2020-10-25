@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -26,6 +27,9 @@ import retrofit2.Response;
 
 public class RestaurantsActivity extends AppCompatActivity implements ItemAdapter.ClickedItem {
     public static final String TAG = RestaurantsActivity.class.getSimpleName();
+    public static final String RESTAURANT_DETAILS_KEY = "100";
+//    private static final String RESTAURANT_DESCRIPTION_KEY = "101";
+//    private static final String RESTAURANT_PHOTOS_KEY = "102";
 
     List<Item> body;
     RecyclerView recyclerView;
@@ -62,6 +66,7 @@ public class RestaurantsActivity extends AppCompatActivity implements ItemAdapte
             @Override
             public void onFailure(Call<List<Item>> call, Throwable t) {
                 Log.d(TAG, "Avem o eroare aici!");
+                t.printStackTrace();
             }
         });
 
@@ -70,8 +75,11 @@ public class RestaurantsActivity extends AppCompatActivity implements ItemAdapte
     @Override
     public void onItemClicked(int position) {
 
-        Toast.makeText(getApplicationContext(),"hei " + position,Toast.LENGTH_SHORT).show();
-//        Intent detailsRestaurant = new Intent(this, RestaurantDetailsActivity.class);
-//        startActivity(detailsRestaurant);
+//        Toast.makeText(getApplicationContext(),"hei " + position,Toast.LENGTH_SHORT).show();
+        Intent detailsRestaurant = new Intent(this, RestaurantDetailsActivity.class);
+        detailsRestaurant.putExtra(RestaurantsActivity.RESTAURANT_DETAILS_KEY, body.get(position));
+//        detailsRestaurant.putExtra(RestaurantsActivity.RESTAURANT_DESCRIPTION_KEY, body.get(position).getSubTitle());
+//        detailsRestaurant.putExtra(RestaurantsActivity.RESTAURANT_PHOTOS_KEY, body.get(position).getImageURLs());
+        startActivity(detailsRestaurant);
     }
 }
