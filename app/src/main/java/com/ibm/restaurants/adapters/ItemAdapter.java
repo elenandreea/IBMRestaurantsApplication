@@ -19,8 +19,13 @@ import java.util.ArrayList;
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder> {
     private ArrayList<Item> items;
     private Context context;
+    private ClickedItem clickedItem;
 
-    public ItemAdapter(ArrayList<Item> items, Context context) {
+    public ItemAdapter(ClickedItem clickedItem) {
+        this.clickedItem = clickedItem;
+    }
+
+    public void setData(ArrayList<Item> items, Context context) {
         this.items = items;
         this.context = context;
         notifyDataSetChanged();
@@ -30,7 +35,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
     @Override
     public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_restaurant,parent,false);
-        return new ItemViewHolder(view);
+        return new ItemViewHolder(view, clickedItem);
     }
 
     @Override
@@ -49,16 +54,28 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         return items.size();
     }
 
-    static class ItemViewHolder extends RecyclerView.ViewHolder{
+    static class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private AppCompatImageView image;
         private AppCompatTextView title;
         private AppCompatTextView subTitle;
+        private ClickedItem clickedItem;
 
-        public ItemViewHolder(@NonNull View itemView) {
+        public ItemViewHolder(@NonNull View itemView, ClickedItem clickedItem) {
             super(itemView);
             image = itemView.findViewById(R.id.image);
             title = itemView.findViewById(R.id.title);
             subTitle = itemView.findViewById(R.id.subtitle);
+            this.clickedItem = clickedItem;
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View v) {
+            clickedItem.onItemClicked(getAdapterPosition());
+        }
+    }
+
+    public interface ClickedItem{
+        void onItemClicked(int position);
     }
 }
