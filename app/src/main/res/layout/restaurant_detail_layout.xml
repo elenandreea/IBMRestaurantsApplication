@@ -52,8 +52,7 @@
             android:scrollbars="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/padding_05"
-            android:layout_marginBottom="@dimen/padding_05"
+            android:layout_marginTop="@dimen/delim_space"
             app:layout_constraintTop_toBottomOf="@id/separator1"
             tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             tools:listitem="@layout/item_detail_layout"
@@ -64,21 +63,30 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/thin"
             android:background="@android:color/darker_gray"
+            android:layout_marginTop="@dimen/delim_space"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/recycle_detail"/>
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/description_detail"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="start"
+            android:layout_marginTop="@dimen/delim_space"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/separator2"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:layout_marginTop="@dimen/padding_05"
-            tools:text="@tools:sample/lorem/random"
-            />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/separator2">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/description_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:layout_marginTop="@dimen/padding_05"
+                tools:text="@tools:sample/lorem/random" />
+
+        </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ProgressBar;
 
 import com.ibm.restaurants.R;
@@ -34,6 +35,9 @@ public class RestaurantsActivity extends AppCompatActivity implements ItemAdapte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurants);
 
+        progressBar = findViewById(R.id.progress_bar);
+        progressBar.setVisibility(View.VISIBLE);
+
         getRestaurantsAsynchronously();
 
         recyclerView = findViewById(R.id.recycle_view);
@@ -52,6 +56,7 @@ public class RestaurantsActivity extends AppCompatActivity implements ItemAdapte
                     body = response.body();
                     itemAdapter.setData((ArrayList<Item>) body, getBaseContext());
                     recyclerView.setAdapter(itemAdapter);
+                    progressBar.setVisibility(View.INVISIBLE);
                 }
 
             }

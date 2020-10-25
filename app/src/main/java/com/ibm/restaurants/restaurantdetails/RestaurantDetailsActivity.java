@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 
 import com.ibm.restaurants.R;
 import com.ibm.restaurants.adapters.ItemDetailsAdapter;
@@ -30,6 +31,7 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
         AppCompatTextView restaurantDetails = findViewById(R.id.description_detail);
 
         restaurantDetails.setText(item.getSubTitle());
+        restaurantDetails.setMovementMethod(ScrollingMovementMethod.getInstance());
         restaurantTitle.setText(item.getTitle());
 
         RecyclerView recyclerView = findViewById(R.id.recycle_detail);
