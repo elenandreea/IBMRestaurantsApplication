@@ -23,7 +23,7 @@ public class ServiceProvider {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
-//                .client(okHttpClient)
+                .client(okHttpClient)
                 .build();
 
         return retrofit.create(PostService.class);

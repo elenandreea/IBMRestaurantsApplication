@@ -60,7 +60,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         private AppCompatTextView subTitle;
         private ClickedItem clickedItem;
 
-        public ItemViewHolder(@NonNull View itemView, ClickedItem clickedItem) {
+        ItemViewHolder(@NonNull View itemView, ClickedItem clickedItem) {
             super(itemView);
             image = itemView.findViewById(R.id.image);
             title = itemView.findViewById(R.id.title);
