@@ -4,4 +4,6 @@
     <string name="the_clink_restaurant_description">The Clink Restaurant at HMP Brixton opened in February 2014 as the third restaurant operated by The Clink Restaurant</string>
     <string name="title">Title</string>
     <string name="Subtitle">Subtitle</string>
+    <string name="unselected">Unselected</string>
+    <string name="favourite">Favourite</string>
 </resources>
