@@ -13,12 +13,9 @@ public class ServiceProvider {
 
     public static PostService createPostService(){
 
+        HttpLoggingInterceptor loggingInterceptor = getHttpLoggingInterceptor();
 
-        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
-        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-
-        OkHttpClient okHttpClient =
-                new OkHttpClient.Builder().addInterceptor(loggingInterceptor).build();
+        OkHttpClient okHttpClient = getOkHttpClient(loggingInterceptor);
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -27,5 +24,15 @@ public class ServiceProvider {
                 .build();
 
         return retrofit.create(PostService.class);
+    }
+
+    private static OkHttpClient getOkHttpClient(HttpLoggingInterceptor loggingInterceptor) {
+        return new OkHttpClient.Builder().addInterceptor(loggingInterceptor).build();
+    }
+
+    private static HttpLoggingInterceptor getHttpLoggingInterceptor() {
+        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
+        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        return loggingInterceptor;
     }
 }

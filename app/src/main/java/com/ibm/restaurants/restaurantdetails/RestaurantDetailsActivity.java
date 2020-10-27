@@ -41,21 +41,29 @@ public class RestaurantDetailsActivity extends AppCompatActivity implements OnMa
         item = getIntent().getParcelableExtra(RestaurantsActivity.RESTAURANT_DETAILS_KEY);
 
         setToolbar();
+        setTextViews();
+        setMapView(savedInstanceState);
+        setRecycleView();
+    }
 
+    private void setMapView(Bundle savedInstanceState) {
+        MapView mapView = findViewById(R.id.image_map);
+        mapView.onCreate(savedInstanceState);
+        mapView.onResume();
+
+        mapView.getMapAsync(this);
+    }
+
+    private void setTextViews() {
         AppCompatTextView restaurantTitle = findViewById(R.id.title_detail);
         restaurantTitle.setText(item.getTitle());
 
         AppCompatTextView restaurantDetails = findViewById(R.id.description_detail);
         restaurantDetails.setText(item.getSubTitle());
         restaurantDetails.setMovementMethod(ScrollingMovementMethod.getInstance());
+    }
 
-        MapView mapView = findViewById(R.id.image_map);
-        mapView.onCreate(savedInstanceState);
-        mapView.onResume();
-
-        mapView.getMapAsync(this);
-
-
+    private void setRecycleView() {
         RecyclerView recyclerView = findViewById(R.id.recycle_detail);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
@@ -71,7 +79,6 @@ public class RestaurantDetailsActivity extends AppCompatActivity implements OnMa
             recyclerView.setAdapter(itemDetailsAdapter);
         }
     }
-
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
