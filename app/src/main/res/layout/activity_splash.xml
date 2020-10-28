@@ -32,8 +32,8 @@
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/app_name"
         android:layout_width="@dimen/name_size"
-        android:layout_height="wrap_content"
-        android:src="@drawable/white_app_name"
+        android:layout_height="50dp"
+        android:src="@drawable/rest"
         app:layout_constraintVertical_bias="0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
