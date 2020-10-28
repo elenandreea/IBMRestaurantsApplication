@@ -10,4 +10,7 @@
     <dimen name="width_pic_recycle">95dp</dimen>
     <dimen name="delim_space">5dp</dimen>
     <dimen name="margins_16">16dp</dimen>
+    <dimen name="logo_size">100dp</dimen>
+    <dimen name="name_size">300dp</dimen>
+    <dimen name="animation_size">200dp</dimen>
 </resources>
