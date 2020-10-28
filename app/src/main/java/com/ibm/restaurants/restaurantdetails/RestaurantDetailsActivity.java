@@ -117,11 +117,7 @@ public class RestaurantDetailsActivity extends AppCompatActivity implements OnMa
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem menuItem) {
         if (menuItem.getItemId() == R.id.action_favourite) {
-            if (hasFavouriteRestaurant)
-                menuItem.setIcon(R.drawable.ic_heart_empty);
-             else
-                menuItem.setIcon(R.drawable.ic_heart);
-
+            menuItem.setIcon(hasFavouriteRestaurant ? R.drawable.ic_heart_empty : R.drawable.ic_heart);
             hasFavouriteRestaurant=!hasFavouriteRestaurant;
             prefUtil.changeFavorite(item.getTitle(), hasFavouriteRestaurant);
         }
