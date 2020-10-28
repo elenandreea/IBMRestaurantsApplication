@@ -23,10 +23,13 @@
         android:id="@+id/progress_bar"
         android:layout_width="@dimen/progressbar_size"
         android:layout_height="@dimen/progressbar_size"
-        app:layout_constraintBottom_toBottomOf="parent"
+        style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Horizontal"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@id/recycle_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="visible"/>
+        app:layout_constraintTop_toTopOf="@id/recycle_view"
+        android:indeterminate="true"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

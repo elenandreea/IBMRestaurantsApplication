@@ -56,7 +56,7 @@ public class RestaurantsActivity extends AppCompatActivity implements ItemAdapte
                     body = response.body();
                     itemAdapter.setData((ArrayList<Item>) body, getBaseContext());
                     recyclerView.setAdapter(itemAdapter);
-                    progressBar.setVisibility(View.INVISIBLE);
+                    progressBar.setVisibility(View.GONE);
                 }
 
             }
