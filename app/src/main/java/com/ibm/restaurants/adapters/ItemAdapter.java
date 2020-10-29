@@ -21,21 +21,21 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
     private Context context;
     private ClickedItem clickedItem;
 
-    public ItemAdapter(ClickedItem clickedItem) {
-        this.clickedItem = clickedItem;
-    }
-
-    public void setData(ArrayList<Item> items, Context context) {
+    public ItemAdapter(ArrayList<Item> items, Context context) {
         this.items = items;
         this.context = context;
         notifyDataSetChanged();
+    }
+
+    public void setOnItemListener(ClickedItem clickedItem) {
+        this.clickedItem = clickedItem;
     }
 
     @NonNull
     @Override
     public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_restaurant,parent,false);
-        return new ItemViewHolder(view, clickedItem);
+        return new ItemViewHolder(view);
     }
 
     @Override
@@ -47,6 +47,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
                 .into(holder.image);
         holder.title.setText(item.getTitle());
         holder.subTitle.setText(item.getSubTitle());
+
+        holder.itemView.setOnClickListener(v -> clickedItem.onItemClicked(position));
     }
 
     @Override
@@ -54,25 +56,20 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         return items.size();
     }
 
-    static class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    static class ItemViewHolder extends RecyclerView.ViewHolder {
         private AppCompatImageView image;
         private AppCompatTextView title;
         private AppCompatTextView subTitle;
-        private ClickedItem clickedItem;
+        private View itemView;
 
-        ItemViewHolder(@NonNull View itemView, ClickedItem clickedItem) {
+        ItemViewHolder(@NonNull View itemView) {
             super(itemView);
+            this.itemView = itemView;
             image = itemView.findViewById(R.id.image);
             title = itemView.findViewById(R.id.title);
             subTitle = itemView.findViewById(R.id.subtitle);
-            this.clickedItem = clickedItem;
-            itemView.setOnClickListener(this);
         }
 
-        @Override
-        public void onClick(View v) {
-            clickedItem.onItemClicked(getAdapterPosition());
-        }
     }
 
     public interface ClickedItem{

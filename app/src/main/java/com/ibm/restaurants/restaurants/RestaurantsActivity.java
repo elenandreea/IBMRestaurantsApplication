@@ -22,7 +22,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RestaurantsActivity extends AppCompatActivity implements ItemAdapter.ClickedItem {
+public class RestaurantsActivity extends AppCompatActivity {
     public static final String RESTAURANT_DETAILS_KEY = "100";
 
     List<Item> body;
@@ -44,8 +44,6 @@ public class RestaurantsActivity extends AppCompatActivity implements ItemAdapte
         recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         recyclerView.setHasFixedSize(true);
 
-        itemAdapter = new ItemAdapter(this);
-
     }
 
     private void getRestaurantsAsynchronously() {
@@ -54,8 +52,8 @@ public class RestaurantsActivity extends AppCompatActivity implements ItemAdapte
             public void onResponse(Call<List<Item>> call, Response<List<Item>> response) {
                 if (response.isSuccessful()) {
                     body = response.body();
-                    itemAdapter.setData((ArrayList<Item>) body, getBaseContext());
-                    recyclerView.setAdapter(itemAdapter);
+                    itemAdapter = new ItemAdapter((ArrayList<Item>) body, getBaseContext());
+                    setItemAdapter();
                     progressBar.setVisibility(View.GONE);
                 }
 
@@ -69,11 +67,13 @@ public class RestaurantsActivity extends AppCompatActivity implements ItemAdapte
 
     }
 
-    @Override
-    public void onItemClicked(int position) {
 
-        Intent detailsRestaurant = new Intent(this, RestaurantDetailsActivity.class);
-        detailsRestaurant.putExtra(RestaurantsActivity.RESTAURANT_DETAILS_KEY, body.get(position));
-        startActivity(detailsRestaurant);
+    public void setItemAdapter() {
+        itemAdapter.setOnItemListener(position -> {
+            Intent detailsRestaurant = new Intent(RestaurantsActivity.this, RestaurantDetailsActivity.class);
+            detailsRestaurant.putExtra(RestaurantsActivity.RESTAURANT_DETAILS_KEY, body.get(position));
+            startActivity(detailsRestaurant);
+        });
+        recyclerView.setAdapter(itemAdapter);
     }
 }
